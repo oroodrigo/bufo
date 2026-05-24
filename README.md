@@ -98,7 +98,7 @@ The CLI is intentionally thin — it validates input, ensures the daemon is runn
 - [x] CLI skeleton (add, remove, list, daemon)
 - [x] Unix socket communication between CLI and daemon
 - [x] Route persistence to `~/.bufo/routes.json`
-- [ ] Reverse proxy on port 1355
+- [x] Reverse proxy on port 1355
 - [ ] Route health polling (every 10s)
 - [ ] HTTPS with auto-generated local certificates
 - [ ] Clean URLs without port number (`meuapp.localhost`)
