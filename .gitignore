@@ -1,0 +1,12 @@
+# Build artifacts
+bufo.exe
+bufo
+*.exe
+
+# Claude Code local config
+.claude/
+CLAUDE.MD
+
+# OS
+.DS_Store
+Thumbs.db
