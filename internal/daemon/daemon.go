@@ -13,6 +13,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/oroodrigo/bufo/internal/config"
+	"github.com/oroodrigo/bufo/internal/proxy"
 	"github.com/oroodrigo/bufo/internal/store"
 )
 
@@ -55,8 +56,17 @@ func Start() {
 		os.Exit(0)
 	}()
 
+	go startProxyServer(c.ProxyPort, s)
+
 	defer cleanup()
 	startServer(c.SocketFile)
+}
+
+func startProxyServer(port int, s *store.Store) {
+	addr := fmt.Sprintf(":%d", port)
+	if err := http.ListenAndServe(addr, proxy.New(s)); err != nil && err != http.ErrServerClosed {
+		panic(fmt.Errorf("proxy encerrou com erro: %w", err))
+	}
 }
 
 func Stop(pidFile string, socketFile string) error {
